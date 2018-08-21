@@ -11,17 +11,8 @@ import { ToastrService } from 'ngx-toastr'
 })
 export class SignUpComponent implements OnInit {
   user: User;
-  id_type:number
-  levels:Array<Object> = [
-    {num: 0, name: "AA"},
-    {num: 1, name: "BB"}
-];
 
   constructor(private userService: UserService, private toastr: ToastrService) { }
-
-  toNumber(){
-    this.id_type = +this.id_type;
-  }
 
   ngOnInit() {
     this.resetForm();
@@ -33,19 +24,19 @@ export class SignUpComponent implements OnInit {
     this.user = {
       login: '',
       password: '',
-      id_type: 1
+      id_type: NaN
     }
   }
 
   OnSubmit(form: NgForm) {
     this.userService.registerUser(form.value)
       .subscribe((data: any) => {
-        if (data.Succeeded == true) {
+        if (data == true) {
           this.resetForm(form);
-          this.toastr.success('Usuário cadastrado com sucesso!');
+          this.toastr.success('Cadastrado com sucesso!');
         }
         else
-          this.toastr.error(data.Errors[0]);
+          this.toastr.error("Falha ao cadastrar o usuário!");
       });
   }
 

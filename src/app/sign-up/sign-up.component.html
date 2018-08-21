@@ -17,18 +17,13 @@
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <select class="form-control" name="id_type" id="id_type" #id_type="ngModel" [(ngModel)]="user.id_type" material-select>
-              <option [ngValue]="" disabled selected>Escolha sua opção</option>
-              <option [ngValue]=1>Administrador</option>
-              <option [ngValue]=2>Professor</option>
-              <option [ngValue]=3>Estudante</option>
-            </select>
-            <label>Selecione o tipo de Usuário</label>
+            <input class="validate" type="number" name="id_type" #id_type="ngModel" [(ngModel)]="user.id_type" required min="1" max="3">
+            <label data-error="Insira um código de usuário correto!">Código de Usuário</label>
           </div>
         </div>
         <div class="row">
             <div class="input-field col s12">
-              <button [disabled]="!userRegistrationForm.valid" class="btn-large btn-submit" type="submit">Submit</button>
+              <button [disabled]="!userRegistrationForm.valid" class="btn-large btn-submit" type="submit">Cadastrar</button>
             </div>
           </div>
       </form>
