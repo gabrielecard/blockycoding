@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../shared/user.model';
 import { NgForm } from '@angular/forms';
-import { UserService } from '../shared/user.service';
 import { ToastrService } from 'ngx-toastr'
+import { User } from '../../shared/user.model';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -31,12 +31,12 @@ export class SignUpComponent implements OnInit {
   OnSubmit(form: NgForm) {
     this.userService.registerUser(form.value)
       .subscribe((data: any) => {
-        if (data == true) {
+        if (data.Succeeded == true) {
           this.resetForm(form);
-          this.toastr.success('Cadastrado com sucesso!');
+          this.toastr.success('Usuário cadastrado com sucesso!');
         }
         else
-          this.toastr.error("Falha ao cadastrar o usuário!");
+          this.toastr.error(data.Errors[0]);
       });
   }
 
