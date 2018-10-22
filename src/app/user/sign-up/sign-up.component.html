@@ -2,22 +2,22 @@
   <div class="row">
     <div class="input-field col s6">
       <input class="validate" type="text" name="login" #login="ngModel" [(ngModel)]="user.login" required>
-      <label data-error="Campo requirido!">Login</label>
+      <label data-error="Campo requirido!">Usuário</label>
     </div>
     <div class="input-field col s6">
       <input class="validate" type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required minlength="3">
-      <label [attr.data-error]="password.errors!=null?(password.errors.required?'Campo requirido!':'Mínimo de 3 caracteres!'):''">Password</label>
+      <label [attr.data-error]="password.errors!=null?(password.errors.required?'Campo requirido!':'Mínimo de 3 caracteres!'):''">Senha</label>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s12">
-      <input class="validate" type="number" name="id_type" #id_type="ngModel" [(ngModel)]="user.id_type" required min="1" max="3">
-      <label [attr.data-error]="id_type.errors!=null?(id_type.errors.required?'Campo requirido!':'Informe o tipo correto!'):''">Tipo de Usuário</label>
+      <input class="validate" type="number" name="id_type" #id_type="ngModel" [(ngModel)]="user.id_type" required min="1" max="2">
+      <label data-error="Informe um tipo de usuário valido!">Tipo de Usuário</label>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s12">
-      <button [disabled]="!userRegistrationForm.valid" class="btn-large btn-submit" type="submit">Cadastrar!</button>
+      <button [disabled]="!userRegistrationForm.valid" class="btn-large btn-submit" type="submit">Cadastrar</button>
     </div>
   </div>
 </form>

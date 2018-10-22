@@ -1,0 +1,33 @@
+<table class="centered responsive-table">
+    <thead>
+        <tr>
+            <th>Aluno</th>
+            <th>Módulo</th>
+        </tr>
+      </thead>
+      <tbody>
+  <tr *ngFor="let user of userService.userList">
+    <td>{{user.login}}</td>
+    <td>
+      <a class="btn" (click)="showLevelsCompleted(user.login, 1);showHours(user.login, 1);showLevelErrors(user.login, 1);showLevelTime(user.login, 1);toggle();scroll(target)">
+        <i class="material-icons">filter_1</i>
+      </a>
+      <a class="btn" (click)="showLevelsCompleted(user.login, 2); showHours(user.login, 2);showLevelErrors(user.login, 2);showLevelTime(user.login, 2); toggle(); scroll(target)">
+        <i class="material-icons">filter_2</i>
+      </a>
+      <a class="btn" (click)="showLevelsCompleted(user.login, 3); showHours(user.login, 3);showLevelErrors(user.login, 3);showLevelTime(user.login, 3); toggle(); scroll(target)">
+        <i class="material-icons">filter_3</i>
+      </a>
+      <a class="btn" (click)="showLevelsCompleted(user.login, 4); showHours(user.login, 4);showLevelErrors(user.login, 4);showLevelTime(user.login, 4); toggle(); scroll(target)">
+        <i class="material-icons">filter_4</i>
+      </a>
+    </td>
+  </tr>
+</tbody>
+</table>
+<div #target>
+<ng-container *ngIf="show">
+    <app-levels-completed></app-levels-completed>
+    <app-charts></app-charts>
+</ng-container>
+</div>

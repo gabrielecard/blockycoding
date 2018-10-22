@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr'
 import { UserService } from '../../shared/user.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Login } from '../../shared/login.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,20 +11,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  isLoginError : boolean = false;
-  constructor(private userService : UserService,private router : Router) { }
+  login: Login;
+  flag: boolean;
+  constructor(private userService : UserService, private toastr: ToastrService, private router : Router) { }
 
   ngOnInit() {
+    this.resetForm();
   }
 
-  OnSubmit(login,password){
-     this.userService.userAuthentication(login,password).subscribe((data : any)=>{
-      localStorage.setItem('userToken',data.access_token);
-      this.router.navigate(['/home']);
-    },
-    (err : HttpErrorResponse)=>{
-      this.isLoginError = true;
-    });
+  resetForm(form?: NgForm) {
+    if (form != null)
+      form.reset();
+    this.login = {
+      login: '',
+      password: ''
+    }
+  }
+
+  OnSubmit(form: NgForm) {
+    this.userService.loginUser(form.value)
+      .subscribe((data: any) => {
+        if (data == 2) {
+          this.toastr.success('Login efetuado com sucesso!');
+          this.router.navigate(['/home']);
+          this.flag = true;
+
+        }
+        else
+          this.resetForm(form);
+          if (this.flag != true)
+            this.toastr.error('Usuário ou senha incorretos!');
+      });
   }
 
 }

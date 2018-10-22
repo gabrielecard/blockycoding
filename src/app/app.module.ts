@@ -13,9 +13,14 @@ import { SignInComponent } from './user/sign-in/sign-in.component';
 import { HomeComponent } from './home/home.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { appRoutes } from './routes';
-import { AuthGuard } from './auth/auth.guard';
-import { AuthInterceptor } from './auth/auth.interceptor';
-
+import { ModulesComponent } from './modules/modules.component';
+import { GeralComponent } from './geral/geral.component';
+import { InicioComponent } from './inicio/inicio.component';
+import { NavComponent } from './nav/nav.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { LevelsCompletedComponent } from './levels-completed/levels-completed.component';
+import { ChartsComponent } from './charts/charts.component';
+import { ChartsAllComponent } from './charts-all/charts-all.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +28,15 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     SignUpComponent,
     UserComponent,
     SignInComponent,
-    HomeComponent
+    HomeComponent,
+    ModulesComponent,
+    GeralComponent,
+    InicioComponent,
+    NavComponent,
+    UserListComponent,
+    LevelsCompletedComponent,
+    ChartsComponent,
+    ChartsAllComponent
   ],
   imports: [
     BrowserModule,
@@ -33,13 +46,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService,AuthGuard,
-    ,
-    {
-      provide : HTTP_INTERCEPTORS,
-      useClass : AuthInterceptor,
-      multi : true
-    }],
+  providers: [UserService, ChartsComponent, ChartsAllComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

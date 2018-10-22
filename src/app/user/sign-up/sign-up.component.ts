@@ -31,12 +31,12 @@ export class SignUpComponent implements OnInit {
   OnSubmit(form: NgForm) {
     this.userService.registerUser(form.value)
       .subscribe((data: any) => {
-        if (data.Succeeded == true) {
+        if (data == true) {
           this.resetForm(form);
-          this.toastr.success('Usuário cadastrado com sucesso!');
+          this.toastr.success('Cadastrado com sucesso!');
         }
         else
-          this.toastr.error(data.Errors[0]);
+        this.toastr.error("Falha ao cadastrar o usuário!");
       });
   }
 

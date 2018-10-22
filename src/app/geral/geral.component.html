@@ -1,0 +1,36 @@
+<app-nav></app-nav>
+<div class="dados">
+    <div class="row">
+        <table class="centered responsive-table">
+            <thead>
+                <tr>
+                    <th>Módulo</th>
+                </tr>
+              </thead>
+              <tbody>
+          <tr>
+            <td>
+              <a class="btn" (click)="showLevelErrorsAll(1);showLevelTimeAll(1);toggle();scroll(target)">
+                <i class="material-icons">filter_1</i>
+              </a>
+              <a class="btn" (click)="showLevelErrorsAll(2);showLevelTimeAll(2);toggle(); scroll(target)">
+                <i class="material-icons">filter_2</i>
+              </a>
+              <a class="btn" (click)="showLevelErrorsAll(3);showLevelTimeAll(3); toggle(); scroll(target)">
+                <i class="material-icons">filter_3</i>
+              </a>
+              <a class="btn" (click)="showLevelErrorsAll(4);showLevelTimeAll(4);toggle(); scroll(target)">
+                <i class="material-icons">filter_4</i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+        <div #target>
+        <ng-container *ngIf="show">
+            <app-charts-all></app-charts-all>
+        </ng-container>
+        </div>
+    </div>
+</div>
+
